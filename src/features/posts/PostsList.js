@@ -9,11 +9,12 @@ import {
   selectAllPosts,
   fetchPosts,
   selectPostIds,
-  selectPostById
+  selectPostById,
 } from './postsSlice'
 
 let PostExcerpt = ({ postId }) => {
-  const post = useSelector(state => selectPostById(state, postId))
+  const post = useSelector((state) => selectPostById(state, postId))
+
   return (
     <article className="post-excerpt" key={post.id}>
       <h3>{post.title}</h3>
@@ -49,8 +50,7 @@ export const PostsList = () => {
   if (postStatus === 'loading') {
     content = <div className="loader">Loading...</div>
   } else if (postStatus === 'succeeded') {
-    // Sort posts in reverse chronological order by datetime string
-    content = orderedPostIds.map(postId => (
+    content = orderedPostIds.map((postId) => (
       <PostExcerpt key={postId} postId={postId} />
     ))
   } else if (postStatus === 'error') {
